@@ -42,6 +42,16 @@ video {
   display: inline-block;
 }
 
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url("../Content/images/kiabiLogoR1.PNG");
+    background-position: 100% 50%;
+    background-size: initial;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
 audio:not([controls]) {
   display: none;
   height: 0;
