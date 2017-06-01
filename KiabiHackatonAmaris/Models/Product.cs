@@ -1,93 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json.Linq;
 
 namespace KiabiHackatonAmaris.Models
 {
 
     public class Product
     {
-        public string productId { get; set; }
-        public string styleId { get; set; }
-        public string colorId { get; set; }
-        public string picture { get; set; }
-        public string baseColorId { get; set; }
-        public string baseColorLabel { get; set; }
-        public List<int> rgb { get; set; }
-        public string brandId { get; set; }
-        public string brandLabel { get; set; }
-        public string sizeGrid { get; set; }
-        public string type { get; set; }
-        public List<Size> sizes { get; set; } 
-        public List<SelectListItem> stores { get; set; }
-        public List<SelectListItem> groups { get; set; }
-        public List<SelectListItem> colors { get; set; }
-        public List<SelectListItem> types { get; set; }
+        public string ProductId { get; set; }
+        public string StyleId { get; set; }
+        public string ColorId { get; set; }
+        public string Picture { get; set; }
+        public string BaseColorId { get; set; }
+        public string BaseColorLabel { get; set; }
+        public List<int> Rgb { get; set; }
+        public string BrandId { get; set; }
+        public string BrandLabel { get; set; }
+        public string SizeGrid { get; set; }
+        public string Type { get; set; }
+        public List<Size> Sizes { get; set; } 
+        public List<SelectListItem> Stores { get; set; }
+        public List<SelectListItem> Groups { get; set; }
+        public List<SelectListItem> Colors { get; set; }
+        public List<SelectListItem> Types { get; set; }
 
         public override string ToString()
         {
-            return $"Product {productId} with style {styleId}";
+            return $"Product {ProductId} with style {StyleId}";
         }
         static public IEnumerable<Product> GetProducts(string groupId = null, string type = null, string baseColorId = null, string shop = null)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri("https://api.kiabi.com/v1")})
+            using (var client = new HttpClient {BaseAddress = new Uri("https://api.kiabi.com/")})
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 client.DefaultRequestHeaders.Add("X-APIKey", "4a609e00-46aa-11e7-98c3-9ed7d2a714b7");
 
-                dynamic filter = new JObject();
-
-                filter.List = new List<Dictionary<string, string>>();
-
-                if (groupId != null)
-                {
-                    var selector = new Dictionary<string, string>
-                                    {
-                                        { "field", "groupId" },
-                                        { "operator", "EQ" },
-                                        {"value", groupId }
-                                    };
-                    filter.Add(selector);
-                }
-
-                if (type != null)
-                {
-                    var selector = new Dictionary<string, string>
-                                    {
-                                        { "field", "type" },
-                                        { "operator", "EQ" },
-                                        {"value", type }
-                                    };
-                    filter.Add(selector);
-                }
-
+                //HttpResponseMessage response;
+                var queryString = "";
                 if (baseColorId != null)
                 {
-                    var selector = new Dictionary<string, string>
-                                    {
-                                        { "field", "baseColorId" },
-                                        { "operator", "EQ" },
-                                        {"value", baseColorId }
-                                    };
-                    filter.Add(selector);
+                    var query = HttpUtility.ParseQueryString(string.Empty);
+                    query["baseColorId"] = "NOIR";
+                    queryString = $"?{query}";
                 }
 
-                HttpResponseMessage response;
-                if (filter.Any())
-                {
-                    var content = new FormUrlEncodedContent(filter);
-                    response = client.PostAsync("search", content).Result;
-                }
-                else
-                {
-                    response = client.GetAsync("").Result;
-                }
+                var response = client.GetAsync($"v1/products{queryString}").Result;
                 return response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<Product>>().Result : null;
             }
         } 
@@ -95,15 +56,15 @@ namespace KiabiHackatonAmaris.Models
 
     public class Size
     {
-        public string sizeId { get; set; }
-        public Sku sku { get; set; }
+        public string SizeId { get; set; }
+        public Sku Sku { get; set; }
     }
 
     public class Sku
     {
-        public int skuId { get; set; }
-        public string ean { get; set; }
-        public double weight { get; set; }
-        public bool active { get; set; }
+        public int SkuId { get; set; }
+        public string Ean { get; set; }
+        public double Weight { get; set; }
+        public bool Active { get; set; }
     }
 }

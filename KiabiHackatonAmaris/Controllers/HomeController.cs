@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using KiabiHackatonAmaris.Models;
 
 namespace KiabiHackatonAmaris.Controllers
 {
@@ -22,9 +26,10 @@ namespace KiabiHackatonAmaris.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var res = Product.GetProducts();
+            var result = res?.Select(item => item.ToString());
 
-            return View();
+            return View(result ?? new List<string>());
         }
     }
 }
