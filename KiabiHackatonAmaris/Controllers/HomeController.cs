@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KiabiHackatonAmaris.EnumClass;
+using KiabiHackatonAmaris.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -8,13 +10,19 @@ using System.Web;
 using System.Web.Mvc;
 using KiabiHackatonAmaris.Models;
 
+
 namespace KiabiHackatonAmaris.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+
+            Product objModel = new Product();
+            objModel.stores = objModel.getStores();
+            objModel.groups = objModel.getGroups();
+            return View(objModel);
+           
         }
 
         public ActionResult About()
@@ -30,6 +38,18 @@ namespace KiabiHackatonAmaris.Controllers
             var result = res?.Select(item => item.ToString());
 
             return View(result ?? new List<string>());
+        }
+
+        public JsonResult GetStores()
+        {
+
+
+            var data = Enum.GetValues(typeof(StoreEnum)).Cast<StoreEnum>().Select(e => new
+            {
+                id = (int)e,
+                text = e.ToString()
+            });
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

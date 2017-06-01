@@ -15,8 +15,10 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <h3 style="color:white; text-align:right"><b>Welcome Customer X</b></h3>
+    @*<ul class="nav navbar-nav navbar-right">
+        <li><a href="#" onclick="location.href='@Url.Action("Register", "Account")'" style="font-size:25px"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a><br /></li>
+        <li><a href="#" onclick="location.href='@Url.Action("Login", "Account",routeValues: null)'" style="font-size:25px"><i class="fa fa-sign-in" aria-hidden="true"></i>Log in</a><br /></li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    </ul>*@
 }

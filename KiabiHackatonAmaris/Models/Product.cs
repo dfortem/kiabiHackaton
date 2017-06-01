@@ -27,9 +27,37 @@ namespace KiabiHackatonAmaris.Models
         public List<SelectListItem> Colors { get; set; }
         public List<SelectListItem> Types { get; set; }
 
+        public int gender { get; set; }
         public override string ToString()
         {
             return $"Product {ProductId} with style {StyleId}";
+        }
+        public List<SelectListItem> getGroups()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="Homme"},
+                 new SelectListItem{ Value="2",Text="Femme"},
+                 new SelectListItem{ Value="3",Text="Jeune"},
+                 new SelectListItem{ Value="4",Text="Bébé"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
+        public List<SelectListItem> getStores()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="Villeneuve D'ascq"},
+                 new SelectListItem{ Value="2",Text="Lille/Euralille"},
+                 new SelectListItem{ Value="3",Text="Lens"},
+                 new SelectListItem{ Value="4",Text="Arras"},
+                 
+             };
+            myList = data.ToList();
+            return myList;
         }
         static public IEnumerable<Product> GetProducts(string groupId = null, string type = null, string baseColorId = null, string shop = null)
         {
@@ -51,7 +79,7 @@ namespace KiabiHackatonAmaris.Models
                 var response = client.GetAsync($"v1/products{queryString}").Result;
                 return response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<Product>>().Result : null;
             }
-        } 
+        }
     }
 
     public class Size
@@ -67,4 +95,6 @@ namespace KiabiHackatonAmaris.Models
         public double Weight { get; set; }
         public bool Active { get; set; }
     }
+
+   
 }
