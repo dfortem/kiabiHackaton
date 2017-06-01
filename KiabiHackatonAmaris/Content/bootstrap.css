@@ -45,8 +45,9 @@ video {
 .jumbotron {
     margin-bottom: 0px;
     background-image: url("../Content/images/kiabiLogoR1.PNG");
-    background-position: 100% 50%;
+    background-position: 85% 50%;
     background-size: initial;
+    background-color: white;
     background-repeat: no-repeat;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
@@ -102,6 +103,7 @@ hr {
   height: 0;
   -moz-box-sizing: content-box;
        box-sizing: content-box;
+       
 }
 
 mark {
@@ -4944,7 +4946,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #ffffff;
 }
 
 .jumbotron h1 {

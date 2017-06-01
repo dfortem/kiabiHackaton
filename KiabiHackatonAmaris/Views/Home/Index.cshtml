@@ -7,7 +7,7 @@
     <h1>Easy P-Tracking App</h1>
     <p class="lead">Track and Find easly your desired product at KIABI'S Stores</p>
 </div>
-
+<hr style="border-width = 10px; border-bottom-width:thick;"/>
 <h2><b>Welcome Customer X</b></h2>
 <br />
 
@@ -29,6 +29,8 @@
                         <label class="control-label">Choose a Store</label>
                     </div>
                     <div class="col-md-7">
+                    @Html.DropDownListFor("StoreId", Url.Action("GetStores"))
+                        
                         @*@Html.Select2("TypeId", Url.Action("GetJobType"), new Select2Option
                        {
                            //OnChange = "disableFieldsValue",
@@ -156,3 +158,11 @@
         </tbody>
     </table>
 </div>
+
+
+@section scripts
+{
+}
+
+
+
