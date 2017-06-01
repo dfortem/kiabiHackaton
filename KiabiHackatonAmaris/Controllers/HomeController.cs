@@ -1,4 +1,5 @@
 ﻿using KiabiHackatonAmaris.EnumClass;
+using KiabiHackatonAmaris.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,12 @@ namespace KiabiHackatonAmaris.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+
+            Product objModel = new Product();
+            objModel.stores = objModel.getStores();
+            objModel.groups = objModel.getGroups();
+            return View(objModel);
+           
         }
 
         public ActionResult About()

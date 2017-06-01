@@ -1,4 +1,6 @@
-﻿@{
+﻿@model KiabiHackatonAmaris.Models.Product
+
+@{
     ViewBag.Title = "Home Page";
 }
 @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
@@ -8,7 +10,6 @@
     <p class="lead">Track and Find easly your desired product at KIABI'S Stores</p>
 </div>
 <hr style="border-width = 10px; border-bottom-width:thick;"/>
-<h2><b>Welcome Customer X</b></h2>
 <br />
 
 
@@ -29,7 +30,7 @@
                         <label class="control-label">Choose a Store</label>
                     </div>
                     <div class="col-md-7">
-                    @Html.DropDownListFor("StoreId", Url.Action("GetStores"))
+                    @Html.DropDownListFor(model => model.theStore, new SelectList(Model.stores, "Value", "Text"), "- Select Store -", new {  @class = "dropdown", style = "width:100%;" })
                         
                         @*@Html.Select2("TypeId", Url.Action("GetJobType"), new Select2Option
                        {
@@ -44,18 +45,11 @@
 
                 <div class="col-md-4">
                     <div class="col-md-5">
-                        <label class="control-label">Gender</label>
+                        <label class="control-label">Gender & age</label>
                     </div>
                     <div class="col-md-7">
-                        @*@Html.Select2Ajax("JobFieldId", Url.Action("GetJobFields"), new Select2Option
-                       {
-                           Placeholder = "Search by job fields",
-                           AllowClear = true,
-                           MinimumInputLength = 0,
-                           Multiple = true,
-                           Width = "100%",
-                           DependsOn = "TypeId"
-                       })*@
+                        @Html.DropDownListFor(model => model.gender, new SelectList(Model.groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
+                     
                     </div>
                 </div>
 
@@ -125,11 +119,10 @@
     <table id="tableDiv" class="table table-striped">
         <thead>
             <tr>
-                <th>Action</th>
+                <th>Map</th>
                 <th>Product</th>
                 <th>Gender</th>
                 <th>Category</th>
-                <th>Theme</th>
             </tr>
         </thead>
         <tbody>
@@ -149,9 +142,6 @@
                     </td>
                     <td>
                      
-                    </td>
-                    <td>
-
                     </td>
                 </tr>
             @* } *@
