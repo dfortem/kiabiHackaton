@@ -21,6 +21,7 @@ namespace KiabiHackatonAmaris.Models
         public List<int> rgb { get; set; }
         public string brandId { get; set; }
         public string brandLabel { get; set; }
+        
         public string sizeGrid { get; set; }
         public string type { get; set; }
         public List<Size> sizes { get; set; } 
@@ -28,14 +29,43 @@ namespace KiabiHackatonAmaris.Models
         public List<SelectListItem> groups { get; set; }
         public List<SelectListItem> colors { get; set; }
         public List<SelectListItem> types { get; set; }
+        public int theStore { get; set; }
 
+        public int gender { get; set; }
         public override string ToString()
         {
             return $"Product {productId} with style {styleId}";
         }
+        public List<SelectListItem> getGroups()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="Homme"},
+                 new SelectListItem{ Value="2",Text="Femme"},
+                 new SelectListItem{ Value="3",Text="Jeune"},
+                 new SelectListItem{ Value="4",Text="Bébé"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
+        public List<SelectListItem> getStores()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="Villeneuve D'ascq"},
+                 new SelectListItem{ Value="2",Text="Lille/Euralille"},
+                 new SelectListItem{ Value="3",Text="Lens"},
+                 new SelectListItem{ Value="4",Text="Arras"},
+                 
+             };
+            myList = data.ToList();
+            return myList;
+        }
         static public IEnumerable<Product> GetProducts(string groupId = null, string type = null, string baseColorId = null, string shop = null)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri("https://api.kiabi.com/v1")})
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/v1") })
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -90,7 +120,7 @@ namespace KiabiHackatonAmaris.Models
                 }
                 return response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<Product>>().Result : null;
             }
-        } 
+        }
     }
 
     public class Size
@@ -106,4 +136,6 @@ namespace KiabiHackatonAmaris.Models
         public double weight { get; set; }
         public bool active { get; set; }
     }
+
+   
 }

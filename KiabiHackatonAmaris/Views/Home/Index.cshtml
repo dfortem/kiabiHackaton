@@ -1,31 +1,158 @@
-﻿@{
+﻿@model KiabiHackatonAmaris.Models.Product
+
+@{
     ViewBag.Title = "Home Page";
 }
-
+@*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Easy P-Tracking App</h1>
+    <p class="lead">Track and Find easly your desired product at KIABI'S Stores</p>
 </div>
+<hr style="border-width = 10px; border-bottom-width:thick;"/>
+<br />
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        <a href="#" id="AdvancedSearchAnchor">Advanced Search <i class="fa fa-caret-down" aria-hidden="true"></i></a>
     </div>
 </div>
+
+<hr>
+
+<div id="advancedSearchDiv" class="row visible">
+    <div class="col-md-12 form-group">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <div class="col-md-5">
+                        <label class="control-label">Choose a Store</label>
+                    </div>
+                    <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.theStore, new SelectList(Model.stores, "Value", "Text"), "- Select Store -", new {  @class = "dropdown", style = "width:100%;" })
+                        
+                        @*@Html.Select2("TypeId", Url.Action("GetJobType"), new Select2Option
+                       {
+                           //OnChange = "disableFieldsValue",
+                           Placeholder = "Search by Type",
+                           AllowClear = true,
+                           MinimumInputLength = 0,
+                           Width = "100%"
+                       })*@
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="col-md-5">
+                        <label class="control-label">Gender & age</label>
+                    </div>
+                    <div class="col-md-7">
+                        @Html.DropDownListFor(model => model.gender, new SelectList(Model.groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
+                     
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 form-group">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <div class="col-md-5">
+                        <label class="control-label">Categories</label>
+                    </div>
+                    <div class="col-md-7">
+                        @*@Html.Select2Ajax("FunctionId", Url.Action("GetJoTitles"), new Select2Option
+                       {
+                           Placeholder = "Search by Function",
+                           AllowClear = true,
+                           MinimumInputLength = 3,
+                           Multiple = true,
+                           Width = "100%"
+                       })*@
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-5">
+                        <label class="control-label">Choose Color</label>
+                    </div>
+                    <div class="col-md-7">
+                        @*@Html.Select2Ajax("ProfileId", Url.Action("GetJoTitles"), new Select2Option
+                       {
+                           Placeholder = "Search by Profile",
+                           AllowClear = true,
+                           MinimumInputLength = 3,
+                           Multiple = true,
+                           Width = "100%"
+                       })*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 form-group">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="text-align: center;">
+                    <button class="btn btn-info searchBtn" type="button" data-url="@Url.Action("SearchTable", "Home")">
+                        <span class="fa-search fa"></span>
+                        Search
+                    </button>
+                    <button class="btn btn-info" type="button" id="clearRefreshBtn" data-url="@Url.Action("SearchTable", "Home")">
+                        <i class="icon-refresh"></i>
+                        <span>Clear Filter</span>
+                    </button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="table-responsive">
+    <table id="tableDiv" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Map</th>
+                <th>Product</th>
+                <th>Gender</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var item in Model.PagedList)
+            {*@
+                <tr>
+                    <td>
+                        @*<a class="btn btn-small itemAction" data-url="@Url.Action("Edit", @*new { id = item.ID }*@@*)" href="#">
+                            Details
+                        </a>*@
+                    </td>
+                    <td>
+                   
+                    </td>
+                    <td>
+                       
+                    </td>
+                    <td>
+                     
+                    </td>
+                </tr>
+            @* } *@
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts
+{
+}
+
+
+
