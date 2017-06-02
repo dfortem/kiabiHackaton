@@ -1,8 +1,8 @@
-﻿@model KiabiHackatonAmaris.Models.Product
+﻿@model KiabiHackatonAmaris.Models.ProductViewModal
 
 @{
     ViewBag.Title = "Home Page";
-    
+
 }
 @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -33,17 +33,17 @@
                                 <label class="control-label">Choose a Store</label>
                             </div>
                             <div class="col-md-7">
-                                @Html.DropDownListFor(model => model.TheStore, new SelectList(Model.Stores, "Value", "Text"),"- Select store-" ,new { @class = "dropdown", style = "width:100%;" })
+                                @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().TheStore, new SelectList(Model.PagedList.FirstOrDefault().getStores(), "Value", "Text"), "- Select store-", new { @class = "dropdown", style = "width:100%;" })
 
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Gender & age</label>
+                                <label class="control-label">Groups</label>
                             </div>
                             <div class="col-md-7">
-                                @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
+                                @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().Gender, new SelectList(Model.PagedList.FirstOrDefault().getGroups(), "Value", "Text"), "- Select Group -", new { @class = "dropdown", style = "width:100%;" })
 
                             </div>
                         </div>
@@ -60,16 +60,20 @@
                                 <label class="control-label">Categories</label>
                             </div>
                             <div class="col-md-7">
-                                @Html.DropDownListFor(model => model.TheType, new SelectList(Model.Types, "Value", "Text"), "- Select Type -", new { @class = "dropdown", style = "width:100%;" })
+                                @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().TheType, new SelectList(Model.PagedList.FirstOrDefault().getTypes(), "Value", "Text"), "- Select Type -", new { @class = "dropdown", style = "width:100%;" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-5">
                                 <label class="control-label">Choose Color</label>
                             </div>
+
                             <div class="col-md-7">
-                                @Html.DropDownListFor(model => model.TheColor, new SelectList(Model.Colors, "Value", "Text"), "- Select Color -", new { @class = "dropdown", style = "width:100%;" })
+
+                                @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().TheColor, new SelectList(Model.PagedList.FirstOrDefault().getColors(), "Value", "Text"), "- Select Color -", new { @class = "dropdown", style = "width:100%;" })
+
                             </div>
+
                         </div>
 
                     </div>
@@ -100,41 +104,42 @@
 <div class="row">
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/poloPhoto.PNG">
+            <img src="@Model.PagedList[0].Picture">
             <div class="caption">
-                <h4>POLO COMFORT PIQUÉ DE COTON</h4>
-                <p>15,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[0].Label</h4>
+                <p>@Model.PagedList[0].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
             </div>
         </div>
     </div>
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/JeanPhoto.PNG">
+            <img src="@Model.PagedList[1].Picture">
             <div class="caption">
-                <h4>JEAN SKINNY EFFET PUSH-UP</h4>
-                <p>19,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[1].Label</h4>
+                <p>@Model.PagedList[1].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="@Model.PagedList[2].Picture">
+            <div class="caption">
+                <h4>@Model.PagedList[2].Label</h4>
+                <p>@Model.PagedList[2].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
             </div>
         </div>
     </div>
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/TshirtPhoto.PNG">
+            <img src="@Model.PagedList[3].Picture">
             <div class="caption">
-                <h4>TEE-SHIRT EN COTON IMPRIMÉ FANTAISIE</h4>
-                <p>4,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-            <img src="~/Content/images/RobeFillePhoto.PNG">
-            <div class="caption">
-                <h4>2 ROBES À SMOCKS FINES BRETELLES</h4>
-                <p>10,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[3].Label</h4>
+                <p>@Model.PagedList[3].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
             </div>
         </div>
     </div>
@@ -142,41 +147,109 @@
 <div class="row">
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/BabyPhoto.PNG">
+            <img src="@Model.PagedList[4].Picture">
             <div class="caption">
-                <h4>VESTE DENIM ROSE FLUO</h4>
-                <p>15,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[4].Label</h4>
+                <p>@Model.PagedList[4].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="@Model.PagedList[5].Picture">
+            <div class="caption">
+                <h4>@Model.PagedList[5].Label</h4>
+                <p>@Model.PagedList[5].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
             </div>
         </div>
     </div>
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/sandalesPhoto.PNG">
+            <img src="@Model.PagedList[6].Picture">
             <div class="caption">
-                <h4>SANDALES COMPENSÉES EN SUÉDINE</h4>
-                <p>18,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[6].Label</h4>
+                <p>@Model.PagedList[6].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
             </div>
         </div>
     </div>
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img src="~/Content/images/HommeTshirtPhoto.jpg">
+            <img src="@Model.PagedList[7].Picture">
             <div class="caption">
-                <h4>TEE-SHIRT JERSEY COL V</h4>
-                <p>3,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h4>@Model.PagedList[7].Label</h4>
+                <p>@Model.PagedList[7].Price €</p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
             </div>
         </div>
     </div>
-    <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-            <img src="~/Content/images/FemmeAcsPhoto.PNG">
-            <div class="caption">
-                <h4>MINI SAC ASPECT SUÉDINE</h4>
-                <p>12,00€</p>
-                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">product Location</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Map</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Group</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Theme</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                   
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnChooseNeed" type="button" class="btn btn-primary" data-dismiss="modal">close</button>
             </div>
         </div>
     </div>

@@ -16,14 +16,28 @@ namespace KiabiHackatonAmaris.Controllers
     {
         public ActionResult Index()
         {
-            var res = Product.GetProduct("AE055_3");
+            var p1 = Product.GetProduct("CC062_1");
+            var p2 = Product.GetProduct("CC066_1");
+            var p3 = Product.GetProduct("AY068_3");
+            var p4 = Product.GetProduct("BG869_14");
+            var p5 = Product.GetProduct("BN359_1");
+            var p6 = Product.GetProduct("CC331_27");
+            var p7 = Product.GetProduct("AQ482_7");
+            var p8 = Product.GetProduct("CC331_16");
 
-            Product objModel = new Product();
-            objModel.Stores = objModel.getStores();
-            objModel.Groups = objModel.getGroups();
-            objModel.Colors = objModel.getColors();
-            objModel.Types = objModel.getTypes();
-            return View(objModel);
+
+            ProductViewModal model = new ProductViewModal();
+            model.PagedList.Add(p1);
+            model.PagedList.Add(p2);
+            model.PagedList.Add(p3);
+            model.PagedList.Add(p4);
+            model.PagedList.Add(p5);
+            model.PagedList.Add(p6);
+            model.PagedList.Add(p7);
+            model.PagedList.Add(p8);
+
+            
+            return View(model);
            
         }
 

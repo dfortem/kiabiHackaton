@@ -22,7 +22,7 @@ namespace KiabiHackatonAmaris.Models
         public string BrandLabel { get; set; }
         public string SizeGrid { get; set; }
         public string Type { get; set; }
-        public List<Size> Sizes { get; set; } 
+        public List<Size> Sizes { get; set; }
         public List<SelectListItem> Stores { get; set; }
         public List<SelectListItem> Groups { get; set; }
         public List<SelectListItem> Colors { get; set; }
@@ -30,7 +30,7 @@ namespace KiabiHackatonAmaris.Models
         public int TheStore { get; set; }
         public int Gender { get; set; }
         public string GroupId { get; set; }
-        public Position Position { get; set; } 
+        public Position Position { get; set; }
         public double Price { get; set; }
         public string Label { get; set; }
         public int TheColor { get; set; }
@@ -42,46 +42,73 @@ namespace KiabiHackatonAmaris.Models
         }
         public List<SelectListItem> getTypes()
         {
-            List<SelectListItem> myList = new List<SelectListItem>();
-            var data = new[]{
-                 new SelectListItem{ Value="1",Text="T-Shirt"},
-                 new SelectListItem{ Value="2",Text="Jean"},
-                 new SelectListItem{ Value="3",Text="Chemise"},
-                 new SelectListItem{ Value="4",Text="chaussure"},
-                 new SelectListItem{ Value="4",Text="Short"},
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/") })
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-APIKey", "4a609e00-46aa-11e7-98c3-9ed7d2a714b7");
+                var response = client.GetAsync($"v1/products").Result;
+                var result = response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<TypeProdcut>>().Result : null;
+                List<SelectListItem> myList = new List<SelectListItem>();
 
-             };
-            myList = data.ToList();
-            return myList;
+                foreach (var i in result)
+                {
+                    var data = new[] { new SelectListItem { Value = i.Type, Text = i.Type } };
+
+                    myList.Add(data.FirstOrDefault());
+                }
+
+                return myList;
+            }
         }
 
         public List<SelectListItem> getColors()
         {
-            List<SelectListItem> myList = new List<SelectListItem>();
-            var data = new[]{
-                 new SelectListItem{ Value="1",Text="NOIR"},
-                 new SelectListItem{ Value="2",Text="BLANC"},
-                 new SelectListItem{ Value="3",Text="ROUGE"},
-                 new SelectListItem{ Value="4",Text="JAUNE"},
-                 new SelectListItem{ Value="4",Text="VERT"},
 
-             };
-            myList = data.ToList();
-            return myList;
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/") })
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-APIKey", "b10fd700-475f-11e7-98c3-ea1aec61695a");
+                var response = client.GetAsync($"v1/style_parameters/base_colors").Result;
+                var result = response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<BaseColor>>().Result : null;
+                List<SelectListItem> myList = new List<SelectListItem>();
+
+                foreach (var i in result)
+                {
+                    var data = new[] { new SelectListItem { Value = i.ColorId, Text = i.ColorLabel } };
+
+                    myList.Add(data.FirstOrDefault());
+                }
+
+                return myList;
+            }
+
         }
 
         public List<SelectListItem> getGroups()
         {
-            List<SelectListItem> myList = new List<SelectListItem>();
-            var data = new[]{
-                 new SelectListItem{ Value="1",Text="Homme"},
-                 new SelectListItem{ Value="2",Text="Femme"},
-                 new SelectListItem{ Value="3",Text="Jeune"},
-                 new SelectListItem{ Value="4",Text="Bébé"},
 
-             };
-            myList = data.ToList();
-            return myList;
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/") })
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-APIKey", "6d750660-46aa-11e7-98c3-cf14e2f8b294");
+                var response = client.GetAsync($"v1/styles/hierarchies/product/hierarchy?fields=children(id,label)").Result;
+                var res = response.Content.ReadAsStringAsync().Result;
+                var result = response.IsSuccessStatusCode ? response.Content.ReadAsAsync<IEnumerable<Child>>().Result : null;
+                List<SelectListItem> myList = new List<SelectListItem>();
+                //var data = new[] { new SelectListItem()};
+                foreach (var i in result.FirstOrDefault().children)
+                {
+                    var data = new[] { new SelectListItem { Value = i.Id, Text = i.Label } };
+
+                    myList.Add(data.FirstOrDefault());
+                }
+
+                //myList = data.ToList();
+                return myList;
+            }
         }
 
         public List<SelectListItem> getStores()
@@ -90,9 +117,8 @@ namespace KiabiHackatonAmaris.Models
             var data = new[]{
                  new SelectListItem{ Value="1",Text="Villeneuve D'ascq"},
                  new SelectListItem{ Value="2",Text="Lille/Euralille"},
-                 new SelectListItem{ Value="3",Text="Lens"},
-                 new SelectListItem{ Value="4",Text="Arras"},
-                 
+
+
              };
             myList = data.ToList();
             return myList;
@@ -100,7 +126,7 @@ namespace KiabiHackatonAmaris.Models
 
         static public IEnumerable<Product> GetProducts(string groupId = null, string type = null, string baseColorId = null, string shop = null)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri("https://api.kiabi.com/")})
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/") })
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -122,7 +148,7 @@ namespace KiabiHackatonAmaris.Models
 
         static public Product GetProduct(string productId)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri("https://api.kiabi.com/")})
+            using (var client = new HttpClient { BaseAddress = new Uri("https://api.kiabi.com/") })
             {
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -170,7 +196,7 @@ namespace KiabiHackatonAmaris.Models
                     var price = result?.Prices?.First(item => item.CountryId == "FR").InitialPriceIncludingVat;
                     if (price != null)
                     {
-                        Price = (double) price;
+                        Price = (double)price;
                         return;
                     }
                 }
@@ -204,5 +230,34 @@ namespace KiabiHackatonAmaris.Models
     {
         public int SkuId { get; set; }
         public List<Price> Prices { get; set; }
+    }
+
+
+    public class BaseColor
+    {
+        public string ColorId { get; set; }
+        public string ColorLabel { get; set; }
+    }
+
+    public class TypeProdcut
+    {
+        public string Type { get; set; }
+        
+    }
+
+    public class ProductGroup
+    {
+        public string Id { get; set; }
+        public string Label { get; set; }
+    }
+
+    public class Child
+    {
+        public List<ProductGroup> children { get; set; }
+
+        public Child()
+        {
+            children = new List<ProductGroup>();
+        }
     }
 }
