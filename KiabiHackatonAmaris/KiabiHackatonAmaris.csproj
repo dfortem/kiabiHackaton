@@ -304,6 +304,13 @@
     <Content Include="Content\images\HommeTshirtPhoto.jpg" />
     <Content Include="Content\images\JeanPhoto.PNG" />
     <Content Include="Content\images\KiabiLogoR1.PNG" />
+    <Content Include="Content\images\KIABI_MAP_1.jpg" />
+    <Content Include="Content\images\KIABI_MAP_2.jpg" />
+    <Content Include="Content\images\KIABI_MAP_3.jpg" />
+    <Content Include="Content\images\KIABI_MAP_4.jpg" />
+    <Content Include="Content\images\KIABI_MAP_5.jpg" />
+    <Content Include="Content\images\KIABI_MAP_6.jpg" />
+    <Content Include="Content\images\KIABI_MAP_7.jpg" />
     <Content Include="Content\images\poloPhoto.PNG" />
     <Content Include="Content\images\RobeFillePhoto.PNG" />
     <Content Include="Content\images\sandalesPhoto.PNG" />
