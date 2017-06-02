@@ -4965,11 +4965,12 @@ a.list-group-item.active > .badge,
 
 .jumbotron h1 {
   line-height: 1;
-  color: inherit;
+  color: black !important;
 }
 
 .jumbotron p {
   line-height: 1.4;
+  color:black !important;
 }
 
 .container .jumbotron {
@@ -4987,7 +4988,11 @@ a.list-group-item.active > .badge,
   }
   .jumbotron h1 {
     font-size: 58px;
+    color:black;
   }
+  .jumbotron p{
+    color: black;
+}
 }
 
 .thumbnail {
