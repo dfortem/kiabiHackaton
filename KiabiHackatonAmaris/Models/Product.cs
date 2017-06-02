@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
@@ -26,12 +27,44 @@ namespace KiabiHackatonAmaris.Models
         public List<SelectListItem> Groups { get; set; }
         public List<SelectListItem> Colors { get; set; }
         public List<SelectListItem> Types { get; set; }
-
-        public int gender { get; set; }
+        public int TheStore { get; set; }
+        public int Gender { get; set; }
+        public int TheColor { get; set; }
+        public int TheType { get; set; }
         public override string ToString()
         {
             return $"Product {ProductId} with style {StyleId}";
         }
+        public List<SelectListItem> getTypes()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="T-Shirt"},
+                 new SelectListItem{ Value="2",Text="Jean"},
+                 new SelectListItem{ Value="3",Text="Chemise"},
+                 new SelectListItem{ Value="4",Text="chaussure"},
+                 new SelectListItem{ Value="4",Text="Short"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
+        public List<SelectListItem> getColors()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="NOIR"},
+                 new SelectListItem{ Value="2",Text="BLANC"},
+                 new SelectListItem{ Value="3",Text="ROUGE"},
+                 new SelectListItem{ Value="4",Text="JAUNE"},
+                 new SelectListItem{ Value="4",Text="VERT"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
         public List<SelectListItem> getGroups()
         {
             List<SelectListItem> myList = new List<SelectListItem>();
