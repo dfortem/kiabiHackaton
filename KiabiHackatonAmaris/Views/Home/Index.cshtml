@@ -7,18 +7,17 @@
 @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="jumbotron">
-    <h1>KIABI'S P-Tracker</h1>
-    <p>Track and find Easly your desired Article</p>
-    <p>in KIABI's Stores</p>
+    <h1>KIABI'S MAP</h1>
+    <p>Localisation de votre produit dans votre magasin préféré</p>
 </div>
 <hr style="border-width:3px; border-bottom-width:thick; color:black" />
 <br />
 <div class="panel panel-info">
-    <div class="panel-heading">Search Area</div>
+    <div class="panel-heading">Zone de recherche</div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <a href="#" id="AdvancedSearchAnchor">Advanced Search <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                <a href="#" id="AdvancedSearchAnchor">Rechercher<i class="fa fa-caret-down" aria-hidden="true"></i></a>
             </div>
         </div>
 
@@ -30,7 +29,7 @@
                     <div class="form-group">
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Store</label>
+                                <label class="control-label">Magasin</label>
                             </div>
                             <div class="col-md-7">
                                 @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().TheStore, new SelectList(Model.PagedList.FirstOrDefault().getStores(), "Value", "Text"), "- Select store-", new { @class = "dropdown", style = "width:100%;" })
@@ -40,7 +39,7 @@
 
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Groups</label>
+                                <label class="control-label">Groupes</label>
                             </div>
                             <div class="col-md-7">
                                 @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().Gender, new SelectList(Model.PagedList.FirstOrDefault().getGroups(), "Value", "Text"), "- Select Group -", new { @class = "dropdown", style = "width:100%;" })
@@ -65,7 +64,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Color</label>
+                                <label class="control-label">Coleur</label>
                             </div>
 
                             <div class="col-md-7">
@@ -87,11 +86,12 @@
                         <div class="col-md-4" style="text-align: center;">
                             <button class="btn btn-info searchBtn" type="button" data-url="@Url.Action("SearchTable", "Home")">
                                 <span class="fa-search fa"></span>
-                                Search
+                                Recherche
                             </button>
                             <button class="btn btn-info" type="button" id="clearRefreshBtn" data-url="@Url.Action("SearchTable", "Home")">
                                 <i class="icon-refresh"></i>
-                                <span>Clear Filter</span>
+                                <span></span>
+                                Effacer
                             </button>
                         </div>
                         <div class="col-md-4"></div>
@@ -216,7 +216,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Preview Location</h4>
+                <h4 class="modal-title" id="myModalLabel">Votre produit est là</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -224,12 +224,12 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                    <p>Group: <span id="GroupText"></span></p>
-                    <p>Theme: <span id="ThemeText"></span></p>
+                    <p>Groupe: <span id="GroupText"></span></p>
+                    <p>Thème: <span id="ThemeText"></span></p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnChooseNeed" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button id="btnChooseNeed" type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>
