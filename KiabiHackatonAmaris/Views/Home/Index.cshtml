@@ -7,9 +7,9 @@
 @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="jumbotron">
-    <h1>Easy P-Tracking App</h1>
-    <p>Suivez et trouvez facilement votre article</p>
-    <p>que vous rechercher dans les magasins de KIABI</p>
+    <h1>KIABI'S P-Tracker</h1>
+    <p>Track and find Easly your desired Article</p>
+    <p>in KIABI's Stores</p>
 </div>
 <hr style="border-width:3px; border-bottom-width:thick; color:black" />
 <br />
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Choose a Store</label>
+                                <label class="control-label">Store</label>
                             </div>
                             <div class="col-md-7">
                                 @Html.DropDownListFor(model => model.PagedList.FirstOrDefault().TheStore, new SelectList(Model.PagedList.FirstOrDefault().getStores(), "Value", "Text"), "- Select store-", new { @class = "dropdown", style = "width:100%;" })
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-5">
-                                <label class="control-label">Choose Color</label>
+                                <label class="control-label">Color</label>
                             </div>
 
                             <div class="col-md-7">
@@ -108,7 +108,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[0].Label</h4>
                 <p>@Model.PagedList[0].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[1].Label</h4>
                 <p>@Model.PagedList[1].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -129,7 +129,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[2].Label</h4>
                 <p>@Model.PagedList[2].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[3].Label</h4>
                 <p>@Model.PagedList[3].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[4].Label</h4>
                 <p>@Model.PagedList[4].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -162,7 +162,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[5].Label</h4>
                 <p>@Model.PagedList[5].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -172,7 +172,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[6].Label</h4>
                 <p>@Model.PagedList[6].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -182,7 +182,7 @@
             <div class="caption">
                 <h4>@Model.PagedList[7].Label</h4>
                 <p>@Model.PagedList[7].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Preview Location</a></p>
             </div>
         </div>
     </div>
@@ -194,7 +194,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Location</h4>
+                <h4 class="modal-title" id="myModalLabel">Preview Location</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -249,7 +249,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnChooseNeed" type="button" class="btn btn-primary" data-dismiss="modal">close</button>
+                <button id="btnChooseNeed" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
