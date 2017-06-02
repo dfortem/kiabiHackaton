@@ -2,151 +2,184 @@
 
 @{
     ViewBag.Title = "Home Page";
+    
 }
 @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <div class="jumbotron">
     <h1>Easy P-Tracking App</h1>
-    <p class="lead">Track and Find easly your desired product at KIABI'S Stores</p>
+    <p>Suivez et trouvez facilement votre article</p>
+    <p>que vous rechercher dans les magasins de KIABI</p>
 </div>
-<hr style="border-width: 10px; border-bottom-width:thick;"/>
+<hr style="border-width:3px; border-bottom-width:thick; color:black" />
 <br />
-
-
-<div class="row">
-    <div class="col-md-12">
-        <a href="#" id="AdvancedSearchAnchor">Advanced Search <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-    </div>
-</div>
-
-<hr>
-
-<div id="advancedSearchDiv" class="row visible">
-    <div class="col-md-12 form-group">
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-4">
-                    <div class="col-md-5">
-                        <label class="control-label">Choose a Store</label>
-                    </div>
-                    <div class="col-md-7">
-                    @Html.DropDownListFor(model => model.TheStore, new SelectList(Model.Stores, "Value", "Text"), "- Select Store -", new {  @class = "dropdown", style = "width:100%;" })
-                        
-                        @*@Html.Select2("TypeId", Url.Action("GetJobType"), new Select2Option
-                       {
-                           //OnChange = "disableFieldsValue",
-                           Placeholder = "Search by Type",
-                           AllowClear = true,
-                           MinimumInputLength = 0,
-                           Width = "100%"
-                       })*@
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="col-md-5">
-                        <label class="control-label">Gender & age</label>
-                    </div>
-                    <div class="col-md-7">
-                        @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
-                     
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-12 form-group">
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-4">
-                    <div class="col-md-5">
-                        <label class="control-label">Categories</label>
-                    </div>
-                    <div class="col-md-7">
-                        @*@Html.Select2Ajax("FunctionId", Url.Action("GetJoTitles"), new Select2Option
-                       {
-                           Placeholder = "Search by Function",
-                           AllowClear = true,
-                           MinimumInputLength = 3,
-                           Multiple = true,
-                           Width = "100%"
-                       })*@
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="col-md-5">
-                        <label class="control-label">Choose Color</label>
-                    </div>
-                    <div class="col-md-7">
-                        @*@Html.Select2Ajax("ProfileId", Url.Action("GetJoTitles"), new Select2Option
-                       {
-                           Placeholder = "Search by Profile",
-                           AllowClear = true,
-                           MinimumInputLength = 3,
-                           Multiple = true,
-                           Width = "100%"
-                       })*@
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-12 form-group">
+<div class="panel panel-info">
+    <div class="panel-heading">Search Area</div>
+    <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-4"></div>
-                <div class="col-md-4" style="text-align: center;">
-                    <button class="btn btn-info searchBtn" type="button" data-url="@Url.Action("SearchTable", "Home")">
-                        <span class="fa-search fa"></span>
-                        Search
-                    </button>
-                    <button class="btn btn-info" type="button" id="clearRefreshBtn" data-url="@Url.Action("SearchTable", "Home")">
-                        <i class="icon-refresh"></i>
-                        <span>Clear Filter</span>
-                    </button>
+                <a href="#" id="AdvancedSearchAnchor">Advanced Search <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id="advancedSearchDiv" class="row visible">
+            <div class="col-md-12 form-group">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label class="control-label">Choose a Store</label>
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(model => model.TheStore, new SelectList(Model.Stores, "Value", "Text"),"- Select store-" ,new { @class = "dropdown", style = "width:100%;" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label class="control-label">Gender & age</label>
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="col-md-4"></div>
+            </div>
+
+            <div class="col-md-12 form-group">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label class="control-label">Categories</label>
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(model => model.TheType, new SelectList(Model.Types, "Value", "Text"), "- Select Type -", new { @class = "dropdown", style = "width:100%;" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-5">
+                                <label class="control-label">Choose Color</label>
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(model => model.TheColor, new SelectList(Model.Colors, "Value", "Text"), "- Select Color -", new { @class = "dropdown", style = "width:100%;" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4" style="text-align: center;">
+                            <button class="btn btn-info searchBtn" type="button" data-url="@Url.Action("SearchTable", "Home")">
+                                <span class="fa-search fa"></span>
+                                Search
+                            </button>
+                            <button class="btn btn-info" type="button" id="clearRefreshBtn" data-url="@Url.Action("SearchTable", "Home")">
+                                <i class="icon-refresh"></i>
+                                <span>Clear Filter</span>
+                            </button>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<div id="table-responsive">
-    <table id="tableDiv" class="table table-striped">
-        <thead>
-            <tr>
-                <th>Map</th>
-                <th>Product</th>
-                <th>Gender</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            @*@foreach (var item in Model.PagedList)
-            {*@
-                <tr>
-                    <td>
-                        @*<a class="btn btn-small itemAction" data-url="@Url.Action("Edit", @*new { id = item.ID }*@@*)" href="#">
-                            Details
-                        </a>*@
-                    </td>
-                    <td>
-                   
-                    </td>
-                    <td>
-                       
-                    </td>
-                    <td>
-                     
-                    </td>
-                </tr>
-            @* } *@
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/poloPhoto.PNG">
+            <div class="caption">
+                <h4>POLO COMFORT PIQUÉ DE COTON</h4>
+                <p>15,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/JeanPhoto.PNG">
+            <div class="caption">
+                <h4>JEAN SKINNY EFFET PUSH-UP</h4>
+                <p>19,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/TshirtPhoto.PNG">
+            <div class="caption">
+                <h4>TEE-SHIRT EN COTON IMPRIMÉ FANTAISIE</h4>
+                <p>4,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/RobeFillePhoto.PNG">
+            <div class="caption">
+                <h4>2 ROBES À SMOCKS FINES BRETELLES</h4>
+                <p>10,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/BabyPhoto.PNG">
+            <div class="caption">
+                <h4>VESTE DENIM ROSE FLUO</h4>
+                <p>15,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/sandalesPhoto.PNG">
+            <div class="caption">
+                <h4>SANDALES COMPENSÉES EN SUÉDINE</h4>
+                <p>18,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/HommeTshirtPhoto.jpg">
+            <div class="caption">
+                <h4>TEE-SHIRT JERSEY COL V</h4>
+                <p>3,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <img src="~/Content/images/FemmeAcsPhoto.PNG">
+            <div class="caption">
+                <h4>MINI SAC ASPECT SUÉDINE</h4>
+                <p>12,00€</p>
+                <p><a href="#" class="btn btn-primary" role="button">Position dans le magasin</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -21,6 +21,8 @@ namespace KiabiHackatonAmaris.Controllers
             Product objModel = new Product();
             objModel.Stores = objModel.getStores();
             objModel.Groups = objModel.getGroups();
+            objModel.Colors = objModel.getColors();
+            objModel.Types = objModel.getTypes();
             return View(objModel);
            
         }

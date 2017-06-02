@@ -33,11 +33,43 @@ namespace KiabiHackatonAmaris.Models
         public Position Position { get; set; } 
         public double Price { get; set; }
         public string Label { get; set; }
+        public int TheColor { get; set; }
+        public int TheType { get; set; }
 
         public override string ToString()
         {
             return $"Product {ProductId} with style {StyleId}";
         }
+        public List<SelectListItem> getTypes()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="T-Shirt"},
+                 new SelectListItem{ Value="2",Text="Jean"},
+                 new SelectListItem{ Value="3",Text="Chemise"},
+                 new SelectListItem{ Value="4",Text="chaussure"},
+                 new SelectListItem{ Value="4",Text="Short"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
+        public List<SelectListItem> getColors()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="NOIR"},
+                 new SelectListItem{ Value="2",Text="BLANC"},
+                 new SelectListItem{ Value="3",Text="ROUGE"},
+                 new SelectListItem{ Value="4",Text="JAUNE"},
+                 new SelectListItem{ Value="4",Text="VERT"},
+
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
         public List<SelectListItem> getGroups()
         {
             List<SelectListItem> myList = new List<SelectListItem>();

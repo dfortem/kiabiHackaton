@@ -47,10 +47,10 @@ video {
     background-image: url("../Content/images/kiabiLogoR1.PNG");
     background-position: 85% 50%;
     background-size: initial;
-    background-color: white;
+    background-color: aliceblue;
     background-repeat: no-repeat;
     color: white;
-    text-shadow: black 0.3em 0.3em 0.3em;
+    /*text-shadow: black 0.3em 0.3em 0.3em;*/
 }
 
 audio:not([controls]) {
@@ -4960,7 +4960,6 @@ a.list-group-item.active > .badge,
   font-size: 21px;
   font-weight: 200;
   line-height: 2.1428571435;
-  color: inherit;
   background-color: #ffffff;
 }
 
@@ -4974,7 +4973,7 @@ a.list-group-item.active > .badge,
 }
 
 .container .jumbotron {
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 768px) {
@@ -4987,7 +4986,7 @@ a.list-group-item.active > .badge,
     padding-left: 60px;
   }
   .jumbotron h1 {
-    font-size: 63px;
+    font-size: 58px;
   }
 }
 
