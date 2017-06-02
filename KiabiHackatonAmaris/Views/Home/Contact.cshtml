@@ -1,4 +1,4 @@
-﻿@model IEnumerable<string>
+﻿@model string
 
 @{
     ViewBag.Title = "Contact";
@@ -17,7 +17,4 @@
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
 </address>
 
-@foreach (var item in @Model)
-{
-    <p>@item</p>
-}
+@Model

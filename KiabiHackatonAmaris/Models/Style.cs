@@ -21,11 +21,21 @@ namespace KiabiHackatonAmaris.Models
         //public List<Size> sizes { get; set; }
         //public List<Element> elements { get; set; }
 
+        public string GetGroupId()
+        {
+            return StyleCollections.FirstOrDefault()?.GroupId;
+        }
+
+        public Dictionary<string, Position> GetPositions()
+        {
+            return Colors.ToDictionary(colorItem => colorItem.ColorId, colorItem => GetPosition(colorItem.ColorId));
+        }
+
         public Position GetPosition(string colorId)
         {
             return new Position
             {
-                GroupId = StyleCollections.FirstOrDefault()?.GroupId,
+                GroupId = GetGroupId(),
                 SubCategoryId = Colors.FirstOrDefault(color => color.ColorId == colorId)?
                                 .ColorCollections.FirstOrDefault()?.SubCategoryId
             };

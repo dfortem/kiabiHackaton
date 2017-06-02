@@ -9,7 +9,7 @@
     <h1>Easy P-Tracking App</h1>
     <p class="lead">Track and Find easly your desired product at KIABI'S Stores</p>
 </div>
-<hr style="border-width = 10px; border-bottom-width:thick;"/>
+<hr style="border-width: 10px; border-bottom-width:thick;"/>
 <br />
 
 
@@ -30,7 +30,7 @@
                         <label class="control-label">Choose a Store</label>
                     </div>
                     <div class="col-md-7">
-                    @Html.DropDownListFor(model => model.theStore, new SelectList(Model.stores, "Value", "Text"), "- Select Store -", new {  @class = "dropdown", style = "width:100%;" })
+                    @Html.DropDownListFor(model => model.TheStore, new SelectList(Model.Stores, "Value", "Text"), "- Select Store -", new {  @class = "dropdown", style = "width:100%;" })
                         
                         @*@Html.Select2("TypeId", Url.Action("GetJobType"), new Select2Option
                        {
@@ -48,7 +48,7 @@
                         <label class="control-label">Gender & age</label>
                     </div>
                     <div class="col-md-7">
-                        @Html.DropDownListFor(model => model.gender, new SelectList(Model.groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
+                        @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Groups, "Value", "Text"), "- Select Value -", new { @class = "dropdown", style = "width:100%;" })
                      
                     </div>
                 </div>
