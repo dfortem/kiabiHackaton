@@ -108,7 +108,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[0].Label</h4>
                 <p>@Model.PagedList[0].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[0].Position.GroupId" data-theme="@Model.PagedList[0].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -118,7 +121,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[1].Label</h4>
                 <p>@Model.PagedList[1].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[1].Position.GroupId" data-theme="@Model.PagedList[1].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -129,7 +135,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[2].Label</h4>
                 <p>@Model.PagedList[2].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal">Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[2].Position.GroupId" data-theme="@Model.PagedList[2].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -139,7 +148,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[3].Label</h4>
                 <p>@Model.PagedList[3].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[3].Position.GroupId" data-theme="@Model.PagedList[3].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -151,7 +163,8 @@
             <div class="caption">
                 <h4>@Model.PagedList[4].Label</h4>
                 <p>@Model.PagedList[4].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p><a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal" 
+                      data-group="@Model.PagedList[4].Position.GroupId" data-theme="@Model.PagedList[4].Position.SubCategoryId" >Position dans le magasin</a></p>
             </div>
         </div>
     </div>
@@ -162,7 +175,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[5].Label</h4>
                 <p>@Model.PagedList[5].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[5].Position.GroupId" data-theme="@Model.PagedList[5].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -172,7 +188,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[6].Label</h4>
                 <p>@Model.PagedList[6].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[6].Position.GroupId" data-theme="@Model.PagedList[6].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -182,7 +201,10 @@
             <div class="caption">
                 <h4>@Model.PagedList[7].Label</h4>
                 <p>@Model.PagedList[7].Price €</p>
-                <p><a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#myModal" >Position dans le magasin</a></p>
+                <p>
+                    <a href="#" class="btn btn-primary open-modal" role="button" data-toggle="modal" data-target="#myModal"
+                       data-group="@Model.PagedList[7].Position.GroupId" data-theme="@Model.PagedList[7].Position.SubCategoryId">Position dans le magasin</a>
+                </p>
             </div>
         </div>
     </div>
@@ -194,58 +216,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">product Location</h4>
+                <h4 class="modal-title" id="myModalLabel">Your product is there:</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <label>Map</label>
-                    </div>
+                    <img src="~/Content/images/KIABI_MAP_1.jpg" alt="map" id="ModalImage"/>
                 </div>
+                <div class="row"></div>
                 <div class="row">
-                    <div class="col-md-12">
-                
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label>Group</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                  
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label>Theme</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                   
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                   
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                   
-                    </div>
+                    <p>Group: <span id="GroupText"></span></p>
+                    <p>Theme: <span id="ThemeText"></span></p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -254,11 +234,6 @@
         </div>
     </div>
 </div>
-
-
-@section scripts
-{
-}
 
 
 
